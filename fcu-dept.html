@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>fcu-dept</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <p style="font-size:16px">請選擇學院</p>
+    <select id="collage_test" onchange="change(this.value)"></select>
+    <p style="font-size:16px">請選擇科系</p>
+    <select id="department_test"></select>
+    <script>
+        var collages = {
+            "商學院": [
+                "會計學系",
+                "國貿系",
+                "經濟系"
+            ],
+            "工學院": [
+                "機電系",
+                "纖複系",
+                "航太系"
+            ],
+            "資電學院": [
+                "通訊系",
+                "資訊系",
+                "自控系",
+                "肥宅系"
+            ],
+            "人文社會學院": [
+                "中文系",
+                "外文系",
+                "歷史文物研究所"
+            ],
+            "建設學院": [
+                "水利系",
+                "土木系",
+                "土管系"
+            ],
+            "理學院": [
+                "應數系",
+                "環科系",
+                "光電系",
+                "電梯系"
+            ],
+            "金融學院": [
+                "風保系",
+                "財金系",
+                "財務工程與精算學位"
+            ],
+            "建築專業學院": [
+                "建築學院學士班",
+                "建築學士學位學程",
+                "室內設計進修學士班"
+            ]
+        }
+        var collages_list = Object.keys(collages)
+
+        $('#collage_test').ready(function() {
+            for(var i=0;i<collages_list.length;i++) {
+                $('#collage_test').append(new Option(collages_list[i], collages_list[i]))
+            }
+            var get_key = $('#collage_test').val()
+            var department_list = collages[get_key]
+            for(var i=0;i<department_list.length;i++) {
+                $('#department_test').append(new Option(department_list[i], department_list[i]))
+            }
+        })
+
+        $("#collage_test").change(function() {
+            var get_key = $('#collage_test').val()
+            var department_list = collages[get_key]
+            $("#department").html("")
+            for(var i=0;i<department_list.length;i++) {
+                $('#department_test').append(new Option(department_list[i], department_list[i]))
+            }
+        })
+    </script>
+</body>
+
+</html>
