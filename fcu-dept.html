@@ -95,17 +95,17 @@
 
         $('#collage_test').ready(() => {
             $.each(collages_list, (index, value) => {
-                $('#collage_test').append(new Option(value, value))
+                $('#collage_test').append(new Option(value))
             })
             $.each(collages[$('#collage_test').val()], (index, value) => {
-                $('#department_test').append(new Option(value, value))
+                $('#department_test').append(new Option(value))
             })
         })
 
         $("#collage_test").change(() => {
             $("#department_test").empty()
             $.each(collages[$('#collage_test').val()], (index, value) => {
-                $('#department_test').append(new Option(value, value))
+                $('#department_test').append(new Option(value))
             })
         })
     </script>
