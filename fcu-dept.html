@@ -6,31 +6,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>fcu-dept</title>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
+        crossorigin="anonymous"></script>
 </head>
 
 <body>
     <p style="font-size:16px">請選擇學院</p>
-    <select id="collage_test" onchange="change(this.value)"></select>
+    <select id="collage_test"></select>
     <p style="font-size:16px">請選擇科系</p>
     <select id="department_test"></select>
     <script>
         var collages = {
             "商學院": [
                 "會計學系",
-                "國貿系",
-                "經濟系"
+                "國際經營與貿易學系",
+                "國際經營與貿易學系國際企業管理全英語學士班",
+                "財稅學系",
+                "合作經濟暨社會事業經營學系",
+                "統計學系",
+                "經濟學系",
+                "企業管理學系",
+                "行銷學系",
+                "國際企業管理學士學位學程(英語專班)",
+                "商學進修學士學位學程",
+                "財經法律研究所 科技管理碩士學位學程",
+                "產業碩士專班",
+                "商學專業碩士在職學位學程",
+                "商學博士學位學程"
             ],
             "工學院": [
-                "機電系",
-                "纖複系",
-                "航太系"
+                "機械與電腦輔助工程學系",
+                "纖維與複合材料學系",
+                "工業工程與系統管理學系",
+                "化學工程學系",
+                "航太與系統工程學系",
+                "精密系統設計學士學位學程",
+                "電聲碩士學位學程",
+                "綠色能源科技碩士學位學程",
+                "創意設計碩士學位學程",
+                "材料與製造工程碩士在職專班",
+                "智能製造與工程管理碩士在職學位學程",
+                "機械與航空工程博士學位學程"
             ],
             "資電學院": [
-                "通訊系",
-                "資訊系",
-                "自控系",
-                "肥宅系"
+                "肥宅系",
+                "資訊工程學系",
+                "電機工程學系",
+                "電子工程學系",
+                "自動控制工程學系",
+                "通訊工程學系",
+                "資電不分系榮譽班",
+                "資訊電機工程碩士在職學位學程",
+                "產業研發碩士專班",
+                "生醫資訊暨生醫工程碩士學位學程",
+                "視光科技碩士在職學位學程",
+                "電機與通訊工程博士學位學程",
+                "智慧聯網產業博士學位學程"
             ],
             "人文社會學院": [
                 "中文系",
@@ -46,7 +77,8 @@
                 "應數系",
                 "環科系",
                 "光電系",
-                "電梯系"
+                "電梯系",
+                "修電梯系"
             ],
             "金融學院": [
                 "風保系",
@@ -61,24 +93,20 @@
         }
         var collages_list = Object.keys(collages)
 
-        $('#collage_test').ready(function() {
-            for(var i=0;i<collages_list.length;i++) {
-                $('#collage_test').append(new Option(collages_list[i], collages_list[i]))
-            }
-            var get_key = $('#collage_test').val()
-            var department_list = collages[get_key]
-            for(var i=0;i<department_list.length;i++) {
-                $('#department_test').append(new Option(department_list[i], department_list[i]))
-            }
+        $('#collage_test').ready(() => {
+            $.each(collages_list, (index, value) => {
+                $('#collage_test').append(new Option(value, value))
+            })
+            $.each(collages[$('#collage_test').val()], (index, value) => {
+                $('#department_test').append(new Option(value, value))
+            })
         })
 
-        $("#collage_test").change(function() {
-            var get_key = $('#collage_test').val()
-            var department_list = collages[get_key]
-            $("#department").html("")
-            for(var i=0;i<department_list.length;i++) {
-                $('#department_test').append(new Option(department_list[i], department_list[i]))
-            }
+        $("#collage_test").change(() => {
+            $("#department_test").empty()
+            $.each(collages[$('#collage_test').val()], (index, value) => {
+                $('#department_test').append(new Option(value, value))
+            })
         })
     </script>
 </body>
